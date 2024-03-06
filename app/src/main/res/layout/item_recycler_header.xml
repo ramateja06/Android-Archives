@@ -3,18 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:layout_height="wrap_content">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerDishList"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/tvRecyclerHeading"
+        android:layout_width="@dimen/dimen_0dp"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/dimen_28dp"
+        android:textColor="@color/textColor"
+        android:textSize="@dimen/dimen_25sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:itemCount="10"
-        tools:listitem="@layout/item_dish_row" />
-
+        tools:text="Heading" />
 </androidx.constraintlayout.widget.ConstraintLayout>
