@@ -17,7 +17,8 @@ class MainViewModel : ViewModel() {
                 "EUR",
                 0
             ),
-            DishModel(null, R.drawable.ic_food, "Palette", 25.0, "USD", 0),
+            DishModel(null, R.drawable.ic_food, "Palette", 25.0, "SAR", 0),
+            DishModel(null, R.drawable.ic_food, "Veg Biryani", 499.0, "INR", 0),
             DishModel(null, R.drawable.ic_food, "Lasagne", 19.0, "GBP", 0),
             DishModel(
                 "Selling fast",
@@ -27,11 +28,11 @@ class MainViewModel : ViewModel() {
                 "CNY",
                 0
             ),
-            DishModel(null, R.drawable.ic_food, "Veg Biryani", 499.0, "INR", 0),
             DishModel(null, R.drawable.ic_food, "Ramen", 100.0, "JPY", 0),
             RecyclerHeadingModel("Beverages"),
             DishModel("Healthy", R.drawable.ic_beverages, "Honey Moon", 999.0, "NZD", 0),
-            DishModel(null, R.drawable.ic_beverages, "Apricot Delight", 299.0, "INR", 0),
-            DishModel(null, R.drawable.ic_beverages, "Cappuccino", 15.0, "USD", 0)
+            DishModel(null, R.drawable.ic_beverages, "Apricot Delight", 299.0, "USD", 0),
+            DishModel(null, R.drawable.ic_beverages, "Invalid Currency Code", 15.0, "Invalid", 0),
+            DishModel(null, R.drawable.ic_beverages, "Negative amount", -15.0, "AUD", 0),
         )
 }
