@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android_archives.adapter.DishItemAdapter
 import com.example.android_archives.databinding.ActivityMainBinding
+import com.example.android_archives.listeners.DishQuantityListener
+import com.example.android_archives.model.DishModel
 import com.example.android_archives.viewmodel.MainViewModel
 
 class MainActivity : AppCompatActivity() {
@@ -19,9 +21,25 @@ class MainActivity : AppCompatActivity() {
         ViewModelProvider(this)[MainViewModel::class.java]
     }
 
-    private val dishItemAdapter by lazy { DishItemAdapter() }
+    private val dishQuantityListener = object : DishQuantityListener {
+        override fun onDecrementClick(data: DishModel, position: Int) {
+            viewModel.decrementQuantity(data, position)
+        }
+
+        override fun onIncrementClick(data: DishModel, position: Int) {
+            viewModel.incrementQuantity(data, position)
+        }
+
+    }
+
+    private val dishItemAdapter by lazy { DishItemAdapter(dishQuantityListener) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        initViews()
+        observeViewModelData()
+    }
+
+    private fun initViews() {
         enableEdgeToEdge()
 //        setContentView(R.layout.activity_main)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -32,13 +50,16 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        initViews()
-    }
 
-    private fun initViews() {
         binding.recyclerDishList.layoutManager =
             LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         binding.recyclerDishList.adapter = dishItemAdapter
-        dishItemAdapter.setData(viewModel.data)
+        dishItemAdapter.setData(viewModel.data.value ?: listOf())
+    }
+
+    private fun observeViewModelData() {
+        viewModel.data.observe(this) {
+            dishItemAdapter.setData(it)
+        }
     }
 }
