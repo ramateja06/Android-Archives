@@ -41,7 +41,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun initViews() {
         enableEdgeToEdge()
-//        setContentView(R.layout.activity_main)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
@@ -54,12 +53,11 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerDishList.layoutManager =
             LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         binding.recyclerDishList.adapter = dishItemAdapter
-        dishItemAdapter.setData(viewModel.data.value ?: listOf())
     }
 
     private fun observeViewModelData() {
         viewModel.data.observe(this) {
-            dishItemAdapter.setData(it)
+            dishItemAdapter.submitList(it)
         }
     }
 }
